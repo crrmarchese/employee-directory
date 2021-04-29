@@ -5,8 +5,6 @@ import "./style.css";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
-import { Dropdown } from 'primereact/dropdown';
-import { MultiSelect } from 'primereact/multiselect';
 import API from '../utils/API'
 
 const Table = () => {
@@ -76,11 +74,22 @@ const Table = () => {
         );
     }
 
+    // Global search in table header
+    const header = (
+        <div className="table-header">
+           <p>US Employees</p> 
+            <div className="p-input-icon-left">
+                <i className="pi pi-search" />
+                <InputText type="search" onInput={(e) => setGlobalFilter((e.target as any).value)} placeholder="Global Search" />
+            </div>
+        </div>
+    );
+
     //console.log(employees);
     return (
             <div className="card">
-                {/* The datatable value is the initial value we set up in useState but is then update with the changes made when we create a new array for listEmployees. The field name must match the key name in const listEmployees */}
-                <DataTable ref={dt} value={employees} header="US Employees" footer={footer} className="p-datatable-lg p-datatable-striped p-text-center" removableSort scrollable globalFilter={globalFilter} emptyMessage="No customers found.">
+                {/* The Datatable value is the initial value we set up in useState but is then updated with the changes made when we create a new array for listEmployees. In the Column, the "field" name must match the "key" name in const listEmployees */}
+                <DataTable ref={dt} value={employees} header={header} footer={footer} className="p-datatable-lg p-datatable-striped p-text-center" removableSort scrollable globalFilter={globalFilter} emptyMessage="No customers found.">
                     <Column field="name" header="Name" sortable body={nameBodyTemplate} filter filterPlaceholder="Search by name"></Column>
                     <Column field="street" header="Street"></Column>
                     <Column field="city" header="City" sortable body={cityBodyTemplate} filter filterPlaceholder="Search by city"></Column>

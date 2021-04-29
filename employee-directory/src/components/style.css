@@ -12,10 +12,26 @@
   border: 1px solid #007ad9;
 }
 
+.p-datatable .p-datatable-header .table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.p-datatable .p-datatable-header .table-header p {
+  flex: 1;
+}
 .p-datatable .p-datatable-thead > tr > th {
   color: #333;
 }
 
-.p-datatable .p-datatable-thead > tr > th {
+.p-datatable .p-datatable-thead > tr > th,
+.p-datatable .p-datatable-footer {
   background: #f4fafe;
+}
+
+/* Contain input boxes inside parent container */
+input {
+  box-sizing: border-box;
+  width: 100%;
 }
