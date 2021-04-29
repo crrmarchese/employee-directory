@@ -26,7 +26,7 @@ const Table = () => {
                     zipcode: `${employee.location.postcode}`,
                     phone: `${employee.phone}`,
                     email: `${employee.email}`,
-                    image: `${employee.picture.thumbnail}`
+                    image: `${employee.picture.medium}`
                 }
             })
             setEmployees(listEmployees)
@@ -89,15 +89,15 @@ const Table = () => {
     return (
             <div className="card">
                 {/* The Datatable value is the initial value we set up in useState but is then updated with the changes made when we create a new array for listEmployees. In the Column, the "field" name must match the "key" name in const listEmployees */}
-                <DataTable ref={dt} value={employees} header={header} footer={footer} className="p-datatable-lg p-datatable-striped p-text-center" removableSort scrollable globalFilter={globalFilter} emptyMessage="No customers found.">
-                    <Column field="name" header="Name" sortable body={nameBodyTemplate} filter filterPlaceholder="Search by name"></Column>
-                    <Column field="street" header="Street"></Column>
-                    <Column field="city" header="City" sortable body={cityBodyTemplate} filter filterPlaceholder="Search by city"></Column>
-                    <Column field="state" header="State" sortable body={stateBodyTemplate} filter filterPlaceholder="Search by state"></Column>
-                    <Column field="zipcode" header="Zip" body={zipBodyTemplate} filter filterPlaceholder="Search by zip"></Column>
-                    <Column field="phone" header="Phone"></Column>
-                    <Column field="email" header="Email" className="email"></Column>                  
-                    <Column field="image" header="Image" body={imageBodyTemplate}></Column>
+                <DataTable ref={dt} value={employees} header={header} footer={footer} className="p-datatable-lg p-datatable-striped p-text-center" removableSort globalFilter={globalFilter} emptyMessage="No customers found." resizableColumns columnResizeMode="fit">
+                    <Column field="name" header="Name" sortable body={nameBodyTemplate} filter filterPlaceholder="Search by name" style={{width:'10%'}}></Column>
+                    <Column field="street" header="Street" style={{width:'10%'}}></Column>
+                    <Column field="city" header="City" sortable body={cityBodyTemplate} filter filterPlaceholder="Search by city" style={{width:'10%'}}></Column>
+                    <Column field="state" header="State" sortable body={stateBodyTemplate} filter filterPlaceholder="Search by state" style={{width:'10%'}}></Column>
+                    <Column field="zipcode" header="Zip" body={zipBodyTemplate} filter filterPlaceholder="Search by zip" style={{width:'10%'}}></Column>
+                    <Column field="phone" header="Phone" style={{width:'10%'}}></Column>
+                    <Column field="email" header="Email" className="email" style={{width:'20%'}}></Column>                  
+                    <Column field="image" header="Image" body={imageBodyTemplate} style={{width:'10%'}}></Column>
                 </DataTable>
             </div>
         

@@ -2,10 +2,6 @@
   font-family: 'Poppins', 'Helvetica Neue', sans-serif;
 }
 
-.email {
-  overflow-wrap: break-word;
-}
-
 .p-datatable .p-datatable-header {
   background: #007ad9;
   color: var(--primary-color-text);
@@ -21,6 +17,7 @@
 .p-datatable .p-datatable-header .table-header p {
   flex: 1;
 }
+
 .p-datatable .p-datatable-thead > tr > th {
   color: #333;
 }
