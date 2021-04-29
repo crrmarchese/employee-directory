@@ -69,7 +69,7 @@ const Table = () => {
     const zipBodyTemplate = (rowData:any) => {
         return (
             <React.Fragment>
-                {rowData.zip}
+                {rowData.zipcode}
             </React.Fragment>
         );
     }
