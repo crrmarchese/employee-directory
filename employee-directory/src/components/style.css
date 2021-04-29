@@ -1,0 +1,21 @@
+.p-component {
+  font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+}
+
+.email {
+  overflow-wrap: break-word;
+}
+
+.p-datatable .p-datatable-header {
+  background: #007ad9;
+  color: var(--primary-color-text);
+  border: 1px solid #007ad9;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  color: #333;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  background: #f4fafe;
+}

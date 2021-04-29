@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import getRandomUser from "../utils/API";
+import "./style.css";
 
 // Prime React Library
 import { DataTable } from 'primereact/datatable';
@@ -13,6 +13,8 @@ const Table = () => {
 
     // First item in array sets the initial state, second item is the function to update it
     const [employees, setEmployees] = useState([]);
+    const [globalFilter, setGlobalFilter] = useState(null);
+    const dt = useRef(null);
    
     // Import the API data, create a const that holds the new array data created by .map and return the individual data items that shows in the table. Axios returns a "data" object by default but then this api has an object named "data" and the name of the array of data returned is named results.
     useEffect(() => {
@@ -24,6 +26,8 @@ const Table = () => {
                     city: `${employee.location.city}`,
                     state: `${employee.location.state}`,
                     zipcode: `${employee.location.postcode}`,
+                    phone: `${employee.phone}`,
+                    email: `${employee.email}`,
                     image: `${employee.picture.thumbnail}`
                 }
             })
@@ -36,21 +40,58 @@ const Table = () => {
     const imageBodyTemplate = (rowData:any) => {
         return <img src={`${rowData.image}`} alt={rowData.name} className="p-shadow-2" />;
     }
+
+    const footer = `There are ${employees ? employees.length : 0} employees in the directory.`;
+
+    // Filter logic for Name, City, State and Zip
+    const nameBodyTemplate = (rowData:any) => {
+        return (
+            <React.Fragment>
+                {rowData.name}
+            </React.Fragment>
+        );
+    }
+
+    const cityBodyTemplate = (rowData:any) => {
+        return (
+            <React.Fragment>
+                {rowData.city}
+            </React.Fragment>
+        );
+    }
+
+    const stateBodyTemplate = (rowData:any) => {
+        return (
+            <React.Fragment>
+                {rowData.state}
+            </React.Fragment>
+        );
+    }
+
+    const zipBodyTemplate = (rowData:any) => {
+        return (
+            <React.Fragment>
+                {rowData.zip}
+            </React.Fragment>
+        );
+    }
+
     //console.log(employees);
     return (
-        <div>
             <div className="card">
                 {/* The datatable value is the initial value we set up in useState but is then update with the changes made when we create a new array for listEmployees. The field name must match the key name in const listEmployees */}
-                <DataTable value={employees} header="US Employees" className="p-datatable-lg p-datatable-striped" removableSort scrollable>
-                    <Column field="name" header="Name" sortable></Column>
+                <DataTable ref={dt} value={employees} header="US Employees" footer={footer} className="p-datatable-lg p-datatable-striped p-text-center" removableSort scrollable globalFilter={globalFilter} emptyMessage="No customers found.">
+                    <Column field="name" header="Name" sortable body={nameBodyTemplate} filter filterPlaceholder="Search by name"></Column>
                     <Column field="street" header="Street"></Column>
-                    <Column field="city" header="City" sortable></Column>
-                    <Column field="state" header="State" sortable></Column>
-                    <Column field="zipcode" header="Zip"></Column>
+                    <Column field="city" header="City" sortable body={cityBodyTemplate} filter filterPlaceholder="Search by city"></Column>
+                    <Column field="state" header="State" sortable body={stateBodyTemplate} filter filterPlaceholder="Search by state"></Column>
+                    <Column field="zipcode" header="Zip" body={zipBodyTemplate} filter filterPlaceholder="Search by zip"></Column>
+                    <Column field="phone" header="Phone"></Column>
+                    <Column field="email" header="Email" className="email"></Column>                  
                     <Column field="image" header="Image" body={imageBodyTemplate}></Column>
                 </DataTable>
             </div>
-        </div>
+        
     )
 }
 
