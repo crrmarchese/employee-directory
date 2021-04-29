@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# UI Kit Testing
+service/
+public/data
