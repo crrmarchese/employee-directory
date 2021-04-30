@@ -14,7 +14,7 @@ Clone the repo to your computer and in your favorite [CLI](https://www.w3schools
 * [GitHub Pages Instructions](https://create-react-app.dev/docs/deployment/#github-pages)
 
 ## Screenshot
-![Employee Directory](./public/assets/images/employee-directory.png)
+![Employee Directory](./employee-directory/public/assets/images/employee-directory.png)
 
 ## URL
 [GitHub page-Deployed Employee Directory](https://crrmarchese.github.io/employee-directory/)
